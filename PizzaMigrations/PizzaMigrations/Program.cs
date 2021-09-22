@@ -6,6 +6,7 @@ using System.CommandLine;
 using System.CommandLine.Invocation;
 using System.IO;
 using System.Threading.Tasks;
+using PizzaMigrations.Seed;
 
 namespace Migrations
 {
@@ -59,7 +60,8 @@ namespace Migrations
                     // Set the connection string
                     .WithGlobalConnectionString(configuration["connectionString"])
                     // Define the assembly containing the migrations
-                    .ScanIn(typeof(_01_CreatePizzaTable).Assembly).For.Migrations())
+                    .ScanIn(typeof(_01_CreatePizzaTable).Assembly).For.Migrations()
+                    .ScanIn(typeof(_1001_Toppings).Assembly).For.Migrations())
                 // Enable logging to console in the FluentMigrator way
                 .AddLogging(lb => lb.AddFluentMigratorConsole())
                 // Build the service provider
