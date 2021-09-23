@@ -1,0 +1,25 @@
+{
+  "CustomerName": "karim",
+  "Pizzas": [
+    {
+      "Name": "Chicken Ranch",
+      "Toppings": [
+        {
+          "Name": "Chicken",
+          "Price": 25
+        },
+        {
+          "Name": "Ranch",
+          "Price": 5
+        },
+        {
+          "Name": "Cheese",
+          "Price": 15
+        }
+      ],
+      "PizzaSize": "Medium",
+      "Price": 67.5,
+      "DefaultPrice": 45
+    }
+  ]
+}

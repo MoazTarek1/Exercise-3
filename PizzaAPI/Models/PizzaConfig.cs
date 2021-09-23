@@ -3,46 +3,54 @@ using System.Collections.Generic;
 using System.Text.Json;
 using System.IO;
 using System.Linq;
+using SD.LLBLGen.Pro.DQE.PostgreSql;
+using PizzaOrder.DatabaseSpecific;
+using PizzaOrder.EntityClasses;
+using PizzaOrder.Linq;
+using SD.LLBLGen.Pro.ORMSupportClasses;
+using Npgsql;
+
+using SD.LLBLGen.Pro.LinqSupportClasses;
+
+using System.Threading.Tasks;
 
 namespace PIZZAAPI
 {
-    public enum Size 
+    public enum Size
     {
-            Small = 120,
-            Medium = 150,
-            Large = 175
+        Small = 120,
+        Medium = 150,
+        Large = 175
     }
     public class PizzaConfig
     {
-        const string _menu = "Models/Menu.json";
-        const string _toppings = "Models/Toppings.json";
+        const string Menu = "Models/Menu.json";
+        const string Toppings = "Models/Toppings.json";
+        private DataAccessAdapter _dataAccessAdapter;
 
-        public async Task<List<Pizza>> GetMenu()
+        public PizzaConfig()
         {
-            try
-            { 
-                var menuJson = await File.ReadAllTextAsync(_menu);
-                List<Pizza> menu = JsonSerializer.Deserialize<List<Pizza>>(menuJson);
-                return menu;
-            }
-            catch
+            NpgsqlConnection.GlobalTypeMapper.UseNetTopologySuite(geographyAsDefault: true);
+            RuntimeConfiguration.ConfigureDQE<PostgreSqlDQEConfiguration>(
+                                            c => c.SetTraceLevel(System.Diagnostics.TraceLevel.Verbose)
+                                                  .AddDbProviderFactory(typeof(NpgsqlFactory)));
+        }
+
+        public async Task<List<Topping>> GetToppingsAsync()
+        {
+            _dataAccessAdapter = new DataAccessAdapter("Server=localhost;Port=5432;Database=Pizza;User Id=postgres;Password=7425584mo;");
+            LinqMetaData meteData = new(_dataAccessAdapter);
+            var toppingsEntity = await meteData.Topping.ToListAsync();
+            var toppings = new List<Topping>();
+            for (int i = 0; i < toppingsEntity.Count; i++)
             {
-                Console.WriteLine("Failed to read file");
-                return DefaultMenu();
+                Topping toppingToAdd = new Topping(toppingsEntity.ElementAt(i).Name, toppingsEntity.ElementAt(i).Price);
+                toppings.Add(toppingToAdd);
             }
+            return toppings;
         }
 
-        public List<Pizza> DefaultMenu()
-        {
-            Pizza pepperoniPizza = new("Pepperoni", new(){new("pepperoni", 25), new("Cheese", 15)}, "Unspecified");
-            Pizza chickenRanchPizza = new("Chicken Ranch", new(){new("Chicken", 25), new("Cheese", 15), new("Ranch", 5)}, "Unspecified");
-            Pizza margheritaPizza = new("Margherita", new(){new("Extra Cheese", 30)}, "Unspecified");
-            Pizza seaFoodPizza = new("Sea Food", new(){new("Shrimp", 40), new("Cheese", 15), new("Calamari", 30)}, "Unspecified");
-            List<Pizza> menu = new(){pepperoniPizza, chickenRanchPizza, margheritaPizza, seaFoodPizza}; 
-            string jsonData = JsonSerializer.Serialize(menu);
-            File.WriteAllText(_menu, jsonData);
-            return menu;
-        }
+
 
         public async Task SaveOrder(Order order)
         {
@@ -51,7 +59,7 @@ namespace PIZZAAPI
             {
                 Directory.CreateDirectory("Orders");
             }
-            if(File.Exists($"Orders/{order.CustomerName}.json"))
+            if (File.Exists($"Orders/{order.CustomerName}.json"))
             {
                 await File.WriteAllTextAsync($"Orders/{order.CustomerName}1.json", jsonData);
             }
@@ -59,38 +67,6 @@ namespace PIZZAAPI
             {
                 await File.WriteAllTextAsync($"Orders/{order.CustomerName}.json", jsonData);
             }
-        }
-
-        public async Task<List<Topping>> GetToppings()
-        {
-            try
-            { 
-                var toppingsJson = await File.ReadAllTextAsync(_toppings);
-                List<Topping> toppings = JsonSerializer.Deserialize<List<Topping>>(toppingsJson);
-                return toppings;
-            }
-            catch
-            {
-                Console.WriteLine("Failed to read file");
-                return DefaultToppings();
-            }
-        }
-
-        public List<Topping> DefaultToppings()
-        {
-            Topping chicken = new("Chicken", 25);
-            Topping calamari = new("Calamari", 30);
-            Topping extraCheese = new("Extra cheese", 30);
-            Topping ranch = new("Ranch", 5);
-            Topping cheese = new("Cheese", 15);
-            Topping pepperoni = new("Pepperoni", 25);
-            Topping barbeque = new("Barbeque", 5);
-            Topping shrimp = new("Shrimp", 40);
-            Topping sausage = new("Sausage", 25);
-            List<Topping> defaultToppings = new(){chicken, calamari, extraCheese, ranch, cheese, pepperoni, barbeque, shrimp, sausage};
-            string jsonData = JsonSerializer.Serialize(defaultToppings);
-            File.WriteAllText(_toppings, jsonData);
-            return defaultToppings;
         }
     }
 }

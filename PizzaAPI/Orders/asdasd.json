@@ -1,0 +1,25 @@
+{
+  "CustomerName": "asdasd",
+  "Pizzas": [
+    {
+      "Name": "asd",
+      "Toppings": [
+        {
+          "Name": "Extra cheese",
+          "Price": 30
+        },
+        {
+          "Name": "Ranch",
+          "Price": 5
+        },
+        {
+          "Name": "Cheese",
+          "Price": 15
+        }
+      ],
+      "PizzaSize": "Medium",
+      "Price": 75,
+      "DefaultPrice": 50
+    }
+  ]
+}

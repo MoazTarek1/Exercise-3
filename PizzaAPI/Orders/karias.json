@@ -1,0 +1,21 @@
+{
+  "CustomerName": "karias",
+  "Pizzas": [
+    {
+      "Name": "Pepperoni",
+      "Toppings": [
+        {
+          "Name": "Cheese",
+          "Price": 15
+        },
+        {
+          "Name": "Pepperoni",
+          "Price": 25
+        }
+      ],
+      "PizzaSize": "Medium",
+      "Price": 60,
+      "DefaultPrice": 40
+    }
+  ]
+}
