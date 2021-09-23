@@ -9,10 +9,10 @@ using PizzaOrder.EntityClasses;
 using PizzaOrder.Linq;
 using SD.LLBLGen.Pro.ORMSupportClasses;
 using Npgsql;
-
 using SD.LLBLGen.Pro.LinqSupportClasses;
-
 using System.Threading.Tasks;
+using ToppingsOnPizza.DtoClasses;
+using ToppingsOnPizza.Persistence;
 
 namespace PIZZAAPI
 {
@@ -27,6 +27,7 @@ namespace PIZZAAPI
         const string Menu = "Models/Menu.json";
         const string Toppings = "Models/Toppings.json";
         private DataAccessAdapter _dataAccessAdapter;
+        const string _connectionString = "Server=localhost;Port=5432;Database=Pizza;User Id=postgres;Password=7425584mo;";
 
         public PizzaConfig()
         {
@@ -36,21 +37,39 @@ namespace PIZZAAPI
                                                   .AddDbProviderFactory(typeof(NpgsqlFactory)));
         }
 
+        public async Task<List<Pizza>> GetMenuAsync()
+        {
+            _dataAccessAdapter = new DataAccessAdapter(_connectionString);
+            LinqMetaData metaData = new(_dataAccessAdapter);
+            var pizzasWithToppings = await ToppingsOnPizzaPersistence.ProjectToToppingsOnPizza(metaData.Pizza).ToListAsync();
+            List<Pizza> pizzas = new();
+            for (int i = 0; i < pizzasWithToppings.Count; i++)
+            {
+                List<Topping> onPizzaToppings = new();
+                foreach (var topping in pizzasWithToppings[i].PizzaToppings)
+                {
+                    Topping toppingToBeAdded = new(Convert.ToInt32(topping.Topping.Id), topping.Topping.Name, topping.Topping.Price);
+                    onPizzaToppings.Add(toppingToBeAdded);
+                }
+                Pizza pizzaToBeAdded = new(Convert.ToInt32(pizzasWithToppings[i].Id), pizzasWithToppings[i].Name, onPizzaToppings, pizzasWithToppings[i].Size);
+                pizzas.Add(pizzaToBeAdded);
+            }
+            return pizzas;
+        }
+
         public async Task<List<Topping>> GetToppingsAsync()
         {
-            _dataAccessAdapter = new DataAccessAdapter("Server=localhost;Port=5432;Database=Pizza;User Id=postgres;Password=7425584mo;");
-            LinqMetaData meteData = new(_dataAccessAdapter);
-            var toppingsEntity = await meteData.Topping.ToListAsync();
+            _dataAccessAdapter = new DataAccessAdapter(_connectionString);
+            LinqMetaData metaData = new(_dataAccessAdapter);
+            var toppingsEntity = await metaData.Topping.ToListAsync();
             var toppings = new List<Topping>();
             for (int i = 0; i < toppingsEntity.Count; i++)
             {
-                Topping toppingToAdd = new Topping(toppingsEntity.ElementAt(i).Name, toppingsEntity.ElementAt(i).Price);
+                Topping toppingToAdd = new Topping(Convert.ToInt32(toppingsEntity.ElementAt(i).Id), toppingsEntity.ElementAt(i).Name, toppingsEntity.ElementAt(i).Price);
                 toppings.Add(toppingToAdd);
             }
             return toppings;
         }
-
-
 
         public async Task SaveOrder(Order order)
         {

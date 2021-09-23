@@ -1,0 +1,102 @@
+{
+  "CustomerName": "kemo",
+  "Pizzas": [
+    {
+      "Id": 4,
+      "Name": "Margherita",
+      "Toppings": [
+        {
+          "Id": 0,
+          "Name": "Calamari",
+          "Price": 30
+        },
+        {
+          "Id": 0,
+          "Name": "Cheese",
+          "Price": 15
+        },
+        {
+          "Id": 0,
+          "Name": "Shrimp",
+          "Price": 40
+        }
+      ],
+      "PizzaSize": "Large",
+      "Price": 148.75,
+      "DefaultPrice": 85
+    },
+    {
+      "Id": 0,
+      "Name": "moza",
+      "Toppings": [
+        {
+          "Id": 1,
+          "Name": "Chicken",
+          "Price": 25
+        },
+        {
+          "Id": 2,
+          "Name": "Calamari",
+          "Price": 30
+        },
+        {
+          "Id": 3,
+          "Name": "Extra cheese",
+          "Price": 30
+        },
+        {
+          "Id": 4,
+          "Name": "Ranch",
+          "Price": 5
+        },
+        {
+          "Id": 5,
+          "Name": "Cheese",
+          "Price": 15
+        },
+        {
+          "Id": 6,
+          "Name": "Pepperoni",
+          "Price": 25
+        },
+        {
+          "Id": 7,
+          "Name": "Barbeque",
+          "Price": 5
+        },
+        {
+          "Id": 8,
+          "Name": "Shrimp",
+          "Price": 40
+        },
+        {
+          "Id": 9,
+          "Name": "Sausage",
+          "Price": 25
+        }
+      ],
+      "PizzaSize": "Medium",
+      "Price": 300,
+      "DefaultPrice": 200
+    },
+    {
+      "Id": 1,
+      "Name": "Pepperoni",
+      "Toppings": [
+        {
+          "Id": 0,
+          "Name": "Cheese",
+          "Price": 15
+        },
+        {
+          "Id": 0,
+          "Name": "Pepperoni",
+          "Price": 25
+        }
+      ],
+      "PizzaSize": "Small",
+      "Price": 48,
+      "DefaultPrice": 40
+    }
+  ]
+}

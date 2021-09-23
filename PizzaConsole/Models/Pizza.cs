@@ -2,8 +2,15 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace PIZZAAPI
+namespace OrderPizza
 {
+    public enum Size
+    {
+        Small = 120,
+        Medium = 150,
+        Large = 175
+    }
+    
     public class Pizza
     {
         public int Id { get; set; }

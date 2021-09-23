@@ -46,6 +46,9 @@ namespace ToppingsOnPizza.DtoClasses
 			[DataContract]
 			public partial class Topping
 			{
+				/// <summary>Gets or sets the Id field. Derived from Entity Model Field 'Topping.Id'</summary>
+				[DataMember]
+				public System.Int64 Id { get; set; }
 				/// <summary>Gets or sets the Name field. Derived from Entity Model Field 'Topping.Name'</summary>
 				[DataMember]
 				public System.String Name { get; set; }

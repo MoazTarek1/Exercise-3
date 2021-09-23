@@ -12,8 +12,8 @@ if (app.Environment.IsDevelopment())
 
 app.MapGet("/", () => "Pizza Order API");
 
-app.MapGet("/menu", () => {
-    return "";
+app.MapGet("/menu", async () => {
+    return await config.GetMenuAsync();
 });
 
 app.MapGet("/toppings", async () =>  {
