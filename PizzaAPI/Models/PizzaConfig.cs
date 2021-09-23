@@ -41,7 +41,7 @@ namespace PIZZAAPI
         {
             _dataAccessAdapter = new DataAccessAdapter(_connectionString);
             LinqMetaData metaData = new(_dataAccessAdapter);
-            var pizzasWithToppings = await ToppingsOnPizzaPersistence.ProjectToToppingsOnPizza(metaData.Pizza).ToListAsync();
+            var pizzasWithToppings = await ToppingsOnPizzaPersistence.ProjectToToppingsOnPizza(metaData.Pizza.Where<PizzaEntity>(pizza => pizza.IsCustomed == false)).ToListAsync();
             List<Pizza> pizzas = new();
             for (int i = 0; i < pizzasWithToppings.Count; i++)
             {
@@ -51,7 +51,7 @@ namespace PIZZAAPI
                     Topping toppingToBeAdded = new(Convert.ToInt32(topping.Topping.Id), topping.Topping.Name, topping.Topping.Price);
                     onPizzaToppings.Add(toppingToBeAdded);
                 }
-                Pizza pizzaToBeAdded = new(Convert.ToInt32(pizzasWithToppings[i].Id), pizzasWithToppings[i].Name, onPizzaToppings, pizzasWithToppings[i].Size);
+                Pizza pizzaToBeAdded = new(Convert.ToInt32(pizzasWithToppings[i].Id), pizzasWithToppings[i].Name, onPizzaToppings, "unSpecified", false);
                 pizzas.Add(pizzaToBeAdded);
             }
             return pizzas;
@@ -73,18 +73,39 @@ namespace PIZZAAPI
 
         public async Task SaveOrder(Order order)
         {
-            string jsonData = JsonSerializer.Serialize(order, new JsonSerializerOptions { WriteIndented = true });
-            if (!Directory.Exists("Orders"))
+            _dataAccessAdapter = new DataAccessAdapter(_connectionString);
+            OrderEntity orderToBeAdded = new();
+            orderToBeAdded.Name = order.CustomerName;
+            await _dataAccessAdapter.SaveEntityAsync(orderToBeAdded, true);
+            foreach (var pizza in order.Pizzas)
             {
-                Directory.CreateDirectory("Orders");
-            }
-            if (File.Exists($"Orders/{order.CustomerName}.json"))
-            {
-                await File.WriteAllTextAsync($"Orders/{order.CustomerName}1.json", jsonData);
-            }
-            else
-            {
-                await File.WriteAllTextAsync($"Orders/{order.CustomerName}.json", jsonData);
+                if (pizza.IsCustomed == true)
+                {
+                    PizzaEntity pizzaentity = new();
+                    pizzaentity.Name = pizza.Name;
+                    pizzaentity.IsCustomed = pizza.IsCustomed;
+                    await _dataAccessAdapter.SaveEntityAsync(pizzaentity, true);
+                    foreach (var topping in pizza.Toppings)
+                    {
+                        PizzaToppingEntity pizzaToppingEntity = new();
+                        pizzaToppingEntity.PizzaId = pizzaentity.Id;
+                        pizzaToppingEntity.ToppingId = topping.Id;
+                        await _dataAccessAdapter.SaveEntityAsync(pizzaToppingEntity, true);
+                    }
+                    OrderPizzaEntity orderPizzaEntity = new();
+                    orderPizzaEntity.PizzaId = pizzaentity.Id;
+                    orderPizzaEntity.OrderId = orderToBeAdded.Id;
+                    orderPizzaEntity.Size = pizza.PizzaSize;
+                    await _dataAccessAdapter.SaveEntityAsync(orderPizzaEntity, true);
+                }
+                else
+                {
+                    OrderPizzaEntity orderPizzaEntity = new();
+                    orderPizzaEntity.PizzaId = pizza.Id;
+                    orderPizzaEntity.OrderId = orderToBeAdded.Id;
+                    orderPizzaEntity.Size = pizza.PizzaSize;
+                    await _dataAccessAdapter.SaveEntityAsync(orderPizzaEntity, true);
+                }
             }
         }
     }

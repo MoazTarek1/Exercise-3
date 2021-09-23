@@ -39,11 +39,12 @@ namespace OrderWithPizza.Persistence
 		{
 			return p__0 => new OrderWithPizza.DtoClasses.OrderWithPizza()
 			{
-				Id = p__0.Id,
 				Name = p__0.Name,
 				OrderPizzas = p__0.OrderPizzas.Select(p__1 => new OrderWithPizza.DtoClasses.OrderWithPizzaTypes.OrderPizza()
 				{
+					OrderId = p__1.OrderId,
 					PizzaId = p__1.PizzaId,
+					Size = p__1.Size,
 				}).ToList(),
 	// __LLBLGENPRO_USER_CODE_REGION_START ProjectionRegion_OrderWithPizza 
 	// __LLBLGENPRO_USER_CODE_REGION_END 

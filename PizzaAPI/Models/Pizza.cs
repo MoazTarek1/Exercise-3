@@ -12,14 +12,16 @@ namespace PIZZAAPI
         public string PizzaSize { get; set; }
         public double Price { get; set; }
         public double DefaultPrice { get; set; }
-        
-        public Pizza (int Id, string name, List<Topping> toppings, string pizzaSize)
+        public Boolean IsCustomed { get; set; }
+
+        public Pizza (int id, string name, List<Topping> toppings, string pizzaSize, Boolean isCustomed)
         {
-            this.Id = Id;
+            this.Id = id;
             this.Name = name;
             this.Toppings = toppings;
             this.PizzaSize = pizzaSize;
             this.DefaultPrice = toppings.Sum(topping => topping.Price);
+            this.IsCustomed = isCustomed;
             var priceFactor = 0;
             switch (this.PizzaSize)
             {
@@ -53,9 +55,9 @@ namespace PIZZAAPI
         public String Name { get; set; }
         public double Price { get; set; }
 
-        public Topping(int Id, String name, double price)
+        public Topping(int id, String name, double price)
         {
-            this.Id = Id;
+            this.Id = id;
             this.Name = name;
             this.Price = price;
         }

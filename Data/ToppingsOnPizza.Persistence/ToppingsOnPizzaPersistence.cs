@@ -40,6 +40,7 @@ namespace ToppingsOnPizza.Persistence
 			return p__0 => new ToppingsOnPizza.DtoClasses.ToppingsOnPizza()
 			{
 				Id = p__0.Id,
+				IsCustomed = p__0.IsCustomed,
 				Name = p__0.Name,
 				PizzaToppings = p__0.PizzaToppings.Select(p__1 => new ToppingsOnPizza.DtoClasses.ToppingsOnPizzaTypes.PizzaTopping()
 				{
@@ -50,7 +51,6 @@ namespace ToppingsOnPizza.Persistence
 						Price = p__1.Topping.Price,
 					},
 				}).ToList(),
-				Size = p__0.Size,
 	// __LLBLGENPRO_USER_CODE_REGION_START ProjectionRegion_ToppingsOnPizza 
 	// __LLBLGENPRO_USER_CODE_REGION_END 
 			};

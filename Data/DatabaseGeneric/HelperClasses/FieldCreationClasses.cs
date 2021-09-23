@@ -26,6 +26,8 @@ namespace PizzaOrder.HelperClasses
 		public static EntityField2 OrderId { get { return ModelInfoProviderSingleton.GetInstance().CreateField2(OrderPizzaFieldIndex.OrderId); }}
 		/// <summary>Creates a new OrderPizzaEntity.PizzaId field instance</summary>
 		public static EntityField2 PizzaId { get { return ModelInfoProviderSingleton.GetInstance().CreateField2(OrderPizzaFieldIndex.PizzaId); }}
+		/// <summary>Creates a new OrderPizzaEntity.Size field instance</summary>
+		public static EntityField2 Size { get { return ModelInfoProviderSingleton.GetInstance().CreateField2(OrderPizzaFieldIndex.Size); }}
 	}
 
 	/// <summary>Field Creation Class for entity PizzaEntity</summary>
@@ -33,10 +35,10 @@ namespace PizzaOrder.HelperClasses
 	{
 		/// <summary>Creates a new PizzaEntity.Id field instance</summary>
 		public static EntityField2 Id { get { return ModelInfoProviderSingleton.GetInstance().CreateField2(PizzaFieldIndex.Id); }}
+		/// <summary>Creates a new PizzaEntity.IsCustomed field instance</summary>
+		public static EntityField2 IsCustomed { get { return ModelInfoProviderSingleton.GetInstance().CreateField2(PizzaFieldIndex.IsCustomed); }}
 		/// <summary>Creates a new PizzaEntity.Name field instance</summary>
 		public static EntityField2 Name { get { return ModelInfoProviderSingleton.GetInstance().CreateField2(PizzaFieldIndex.Name); }}
-		/// <summary>Creates a new PizzaEntity.Size field instance</summary>
-		public static EntityField2 Size { get { return ModelInfoProviderSingleton.GetInstance().CreateField2(PizzaFieldIndex.Size); }}
 	}
 
 	/// <summary>Field Creation Class for entity PizzaToppingEntity</summary>

@@ -14,7 +14,7 @@ namespace PizzaMigrations.Seed
                 Insert.IntoTable("Pizza").Row(new
                 {
                     Name = pizzaName,
-                    Size = "Unspecified"
+                    IsCustomed = false
                 });
             }
         }

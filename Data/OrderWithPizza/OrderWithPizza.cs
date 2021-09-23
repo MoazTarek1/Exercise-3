@@ -13,9 +13,6 @@ namespace OrderWithPizza.DtoClasses
 	[DataContract]
 	public partial class OrderWithPizza
 	{
-		/// <summary>Gets or sets the Id field. Derived from Entity Model Field 'Order.Id'</summary>
-		[DataMember]
-		public System.Int64 Id { get; set; }
 		/// <summary>Gets or sets the Name field. Derived from Entity Model Field 'Order.Name'</summary>
 		[DataMember]
 		public System.String Name { get; set; }
@@ -31,9 +28,15 @@ namespace OrderWithPizza.DtoClasses
 		[DataContract]
 		public partial class OrderPizza
 		{
+			/// <summary>Gets or sets the OrderId field. Derived from Entity Model Field 'OrderPizza.OrderId (FK)'</summary>
+			[DataMember]
+			public System.Int64 OrderId { get; set; }
 			/// <summary>Gets or sets the PizzaId field. Derived from Entity Model Field 'OrderPizza.PizzaId (FK)'</summary>
 			[DataMember]
 			public System.Int64 PizzaId { get; set; }
+			/// <summary>Gets or sets the Size field. Derived from Entity Model Field 'OrderPizza.Size'</summary>
+			[DataMember]
+			public System.String Size { get; set; }
 		}
 	}
 

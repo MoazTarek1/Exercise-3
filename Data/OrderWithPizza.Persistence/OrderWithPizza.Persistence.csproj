@@ -3,7 +3,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{00D5C6C1-35AC-4AB2-A5FB-078A3682DA3B}</ProjectGuid>
+    <ProjectGuid>{218B4116-E3B2-443A-B1A4-9A85286D9D14}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>OrderWithPizza.Persistence</RootNamespace>
@@ -45,11 +45,11 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DatabaseGeneric\PizzaOrder.csproj">
-      <Project>{E9B56A92-AC1E-4160-80D7-4006E7041C3F}</Project>
+      <Project>{E5D13856-2122-4A60-B950-E58EEB37F19B}</Project>
       <Name>PizzaOrder</Name>
     </ProjectReference>
     <ProjectReference Include="..\OrderWithPizza\OrderWithPizza.csproj">
-      <Project>{561BE305-0ACC-48F0-A562-D14E3797E9F8}</Project>
+      <Project>{35D08A39-5C09-45DC-9944-1987883518A6}</Project>
       <Name>OrderWithPizza</Name>
     </ProjectReference>
   </ItemGroup>

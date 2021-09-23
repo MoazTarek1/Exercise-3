@@ -63,6 +63,7 @@ namespace PizzaOrder.HelperClasses
 			this.AddFieldIndexEnumForElementName(typeof(OrderPizzaFieldIndex), "OrderPizzaEntity");
 			this.AddElementFieldInfo("OrderPizzaEntity", "OrderId", typeof(System.Int64), true, true, false, false,  (int)OrderPizzaFieldIndex.OrderId, 0, 0, 20);
 			this.AddElementFieldInfo("OrderPizzaEntity", "PizzaId", typeof(System.Int64), true, true, false, false,  (int)OrderPizzaFieldIndex.PizzaId, 0, 0, 20);
+			this.AddElementFieldInfo("OrderPizzaEntity", "Size", typeof(System.String), false, false, false, false,  (int)OrderPizzaFieldIndex.Size, 1073741824, 0, 0);
 		}
 
 		/// <summary>Inits PizzaEntity's info objects</summary>
@@ -70,8 +71,8 @@ namespace PizzaOrder.HelperClasses
 		{
 			this.AddFieldIndexEnumForElementName(typeof(PizzaFieldIndex), "PizzaEntity");
 			this.AddElementFieldInfo("PizzaEntity", "Id", typeof(System.Int64), true, false, true, false,  (int)PizzaFieldIndex.Id, 0, 0, 20);
+			this.AddElementFieldInfo("PizzaEntity", "IsCustomed", typeof(System.Boolean), false, false, false, false,  (int)PizzaFieldIndex.IsCustomed, 0, 0, 0);
 			this.AddElementFieldInfo("PizzaEntity", "Name", typeof(System.String), false, false, false, false,  (int)PizzaFieldIndex.Name, 1073741824, 0, 0);
-			this.AddElementFieldInfo("PizzaEntity", "Size", typeof(System.String), false, false, false, false,  (int)PizzaFieldIndex.Size, 1073741824, 0, 0);
 		}
 
 		/// <summary>Inits PizzaToppingEntity's info objects</summary>

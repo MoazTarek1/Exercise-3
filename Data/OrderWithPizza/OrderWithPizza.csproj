@@ -3,7 +3,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{839886FB-2860-42CD-A8D7-A46199A6F4D1}</ProjectGuid>
+    <ProjectGuid>{35D08A39-5C09-45DC-9944-1987883518A6}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>OrderWithPizza</RootNamespace>

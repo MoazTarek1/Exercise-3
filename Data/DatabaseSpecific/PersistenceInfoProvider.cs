@@ -54,9 +54,10 @@ namespace PizzaOrder.DatabaseSpecific
 		/// <summary>Inits OrderPizzaEntity's mappings</summary>
 		private void InitOrderPizzaEntityMappings()
 		{
-			this.AddElementMapping("OrderPizzaEntity", @"Pizza", @"public", "OrderPizza", 2, 0);
+			this.AddElementMapping("OrderPizzaEntity", @"Pizza", @"public", "OrderPizza", 3, 0);
 			this.AddElementFieldMapping("OrderPizzaEntity", "OrderId", "OrderId", false, "Bigint", 0, 20, 0, false, "", null, typeof(System.Int64), 0);
 			this.AddElementFieldMapping("OrderPizzaEntity", "PizzaId", "PizzaId", false, "Bigint", 0, 20, 0, false, "", null, typeof(System.Int64), 1);
+			this.AddElementFieldMapping("OrderPizzaEntity", "Size", "Size", false, "Text", 1073741824, 0, 0, false, "", null, typeof(System.String), 2);
 		}
 
 		/// <summary>Inits PizzaEntity's mappings</summary>
@@ -64,8 +65,8 @@ namespace PizzaOrder.DatabaseSpecific
 		{
 			this.AddElementMapping("PizzaEntity", @"Pizza", @"public", "Pizza", 3, 0);
 			this.AddElementFieldMapping("PizzaEntity", "Id", "Id", false, "Bigint", 0, 20, 0, true, "public.Pizza_Id_seq", null, typeof(System.Int64), 0);
-			this.AddElementFieldMapping("PizzaEntity", "Name", "Name", false, "Text", 1073741824, 0, 0, false, "", null, typeof(System.String), 1);
-			this.AddElementFieldMapping("PizzaEntity", "Size", "Size", false, "Text", 1073741824, 0, 0, false, "", null, typeof(System.String), 2);
+			this.AddElementFieldMapping("PizzaEntity", "IsCustomed", "IsCustomed", false, "Boolean", 0, 0, 0, false, "", null, typeof(System.Boolean), 1);
+			this.AddElementFieldMapping("PizzaEntity", "Name", "Name", false, "Text", 1073741824, 0, 0, false, "", null, typeof(System.String), 2);
 		}
 
 		/// <summary>Inits PizzaToppingEntity's mappings</summary>

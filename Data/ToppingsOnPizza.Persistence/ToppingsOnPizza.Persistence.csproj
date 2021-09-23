@@ -3,7 +3,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{3CC15E2D-40CA-457A-94AD-174291DC3FF5}</ProjectGuid>
+    <ProjectGuid>{357FD380-8E66-445E-BFF2-09ECD025BFAE}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>ToppingsOnPizza.Persistence</RootNamespace>
@@ -45,11 +45,11 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DatabaseGeneric\PizzaOrder.csproj">
-      <Project>{0A7702AE-C28F-4430-A229-EF04086C554E}</Project>
+      <Project>{E5D13856-2122-4A60-B950-E58EEB37F19B}</Project>
       <Name>PizzaOrder</Name>
     </ProjectReference>
     <ProjectReference Include="..\ToppingsOnPizza\ToppingsOnPizza.csproj">
-      <Project>{DF668CE4-F713-4DBA-AF7C-42CA9A3B0863}</Project>
+      <Project>{83FF8A14-731A-45E4-8D3D-8FFC8B22E15B}</Project>
       <Name>ToppingsOnPizza</Name>
     </ProjectReference>
   </ItemGroup>

@@ -10,7 +10,7 @@ namespace Migrations
             Create.Table("Pizza")
                 .WithColumn("Id").AsInt64().PrimaryKey().Identity()
                 .WithColumn("Name").AsString()
-                .WithColumn("Size").AsString();
+                .WithColumn("IsCustomed").AsBoolean();
         }
     }
 }

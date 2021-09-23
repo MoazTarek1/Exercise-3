@@ -160,20 +160,20 @@ namespace PizzaOrder.EntityClasses
 			get { return (System.Int64)GetValue((int)PizzaFieldIndex.Id, true); }
 			set { SetValue((int)PizzaFieldIndex.Id, value); }		}
 
+		/// <summary>The IsCustomed property of the Entity Pizza<br/><br/></summary>
+		/// <remarks>Mapped on  table field: "Pizza"."IsCustomed".<br/>Table field type characteristics (type, precision, scale, length): Boolean, 0, 0, 0.<br/>Table field behavior characteristics (is nullable, is PK, is identity): false, false, false</remarks>
+		public virtual System.Boolean IsCustomed
+		{
+			get { return (System.Boolean)GetValue((int)PizzaFieldIndex.IsCustomed, true); }
+			set	{ SetValue((int)PizzaFieldIndex.IsCustomed, value); }
+		}
+
 		/// <summary>The Name property of the Entity Pizza<br/><br/></summary>
 		/// <remarks>Mapped on  table field: "Pizza"."Name".<br/>Table field type characteristics (type, precision, scale, length): Text, 0, 0, 1073741824.<br/>Table field behavior characteristics (is nullable, is PK, is identity): false, false, false</remarks>
 		public virtual System.String Name
 		{
 			get { return (System.String)GetValue((int)PizzaFieldIndex.Name, true); }
 			set	{ SetValue((int)PizzaFieldIndex.Name, value); }
-		}
-
-		/// <summary>The Size property of the Entity Pizza<br/><br/></summary>
-		/// <remarks>Mapped on  table field: "Pizza"."Size".<br/>Table field type characteristics (type, precision, scale, length): Text, 0, 0, 1073741824.<br/>Table field behavior characteristics (is nullable, is PK, is identity): false, false, false</remarks>
-		public virtual System.String Size
-		{
-			get { return (System.String)GetValue((int)PizzaFieldIndex.Size, true); }
-			set	{ SetValue((int)PizzaFieldIndex.Size, value); }
 		}
 
 		/// <summary>Gets the EntityCollection with the related entities of type 'OrderPizzaEntity' which are related to this entity via a relation of type '1:n'. If the EntityCollection hasn't been fetched yet, the collection returned will be empty.<br/><br/></summary>
@@ -196,10 +196,10 @@ namespace PizzaOrder
 	{
 		///<summary>Id. </summary>
 		Id,
+		///<summary>IsCustomed. </summary>
+		IsCustomed,
 		///<summary>Name. </summary>
 		Name,
-		///<summary>Size. </summary>
-		Size,
 		/// <summary></summary>
 		AmountOfFields
 	}

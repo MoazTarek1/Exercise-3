@@ -16,15 +16,15 @@ namespace ToppingsOnPizza.DtoClasses
 		/// <summary>Gets or sets the Id field. Derived from Entity Model Field 'Pizza.Id'</summary>
 		[DataMember]
 		public System.Int64 Id { get; set; }
+		/// <summary>Gets or sets the IsCustomed field. Derived from Entity Model Field 'Pizza.IsCustomed'</summary>
+		[DataMember]
+		public System.Boolean IsCustomed { get; set; }
 		/// <summary>Gets or sets the Name field. Derived from Entity Model Field 'Pizza.Name'</summary>
 		[DataMember]
 		public System.String Name { get; set; }
 		/// <summary>Gets or sets the PizzaToppings field. </summary>
 		[DataMember]
 		public List<ToppingsOnPizzaTypes.PizzaTopping> PizzaToppings { get; set; }
-		/// <summary>Gets or sets the Size field. Derived from Entity Model Field 'Pizza.Size'</summary>
-		[DataMember]
-		public System.String Size { get; set; }
 	}
 
 	namespace ToppingsOnPizzaTypes
