@@ -5,7 +5,7 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>9.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{8BD4168C-15A1-4642-9C4B-7FE11C0F9679}</ProjectGuid>
+    <ProjectGuid>{67BE83CC-2B7C-46D0-8782-396CFCA6818B}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>PizzaOrder.DatabaseSpecific</RootNamespace>

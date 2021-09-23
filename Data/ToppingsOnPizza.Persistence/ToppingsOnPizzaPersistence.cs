@@ -45,6 +45,7 @@ namespace ToppingsOnPizza.Persistence
 				{
 					Topping = new ToppingsOnPizza.DtoClasses.ToppingsOnPizzaTypes.PizzaToppingTypes.Topping()
 					{
+						Id = p__1.Topping.Id,
 						Name = p__1.Topping.Name,
 						Price = p__1.Topping.Price,
 					},
