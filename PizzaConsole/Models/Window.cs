@@ -101,7 +101,7 @@ namespace OrderPizza
                     .AddChoices(pizzaMenu)
             );
             string pizzaSize = this.DrawSizeSelect();
-            Pizza pizza = new(selectedPizza.Id, selectedPizza.Name, selectedPizza.Toppings, pizzaSize);
+            Pizza pizza = new(selectedPizza.Id, selectedPizza.Name, selectedPizza.Toppings, pizzaSize, false);
             return pizza;     
         }    
 
@@ -120,7 +120,7 @@ namespace OrderPizza
             );
             var pizzaName = AnsiConsole.Ask<string>("What do you want to name your pizza?");
             string pizzaSize = this.DrawSizeSelect();
-            Pizza pizza = new(0, pizzaName, listOfToppings, pizzaSize);
+            Pizza pizza = new(0, pizzaName, toppings, pizzaSize, true);
             return pizza;
         } 
     }
